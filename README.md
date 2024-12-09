@@ -21,16 +21,16 @@ The CustomUser model includes the following fields:
 **Surname**: The user's last name (max 30 characters).  
 **Bio**: A short biography of the user (max 500 characters).  
 **Birth Date**: The user's date of birth.  
-**Location**: The user's location (max 30 characters).
-**Email**: The user's email address (unique).
-**Phone**: The user's phone number (max 15 characters).
-**Avatar**: The user's profile picture (image upload).
-**Obstruct List**: A many-to-many relationship to other users, allowing users to block others.
-**Followers**: A many-to-many relationship to other users, representing users who follow this user.
-**Following**: A many-to-many relationship to other users, representing users that this user is following.
-**Created At**: The timestamp when the user profile was created.
-**Updated At**: The timestamp when the user profile was last updated.
-**Is Active**: A boolean field indicating if the user account is active (default: True).
+**Location**: The user's location (max 30 characters).  
+**Email**: The user's email address (unique).  
+**Phone**: The user's phone number (max 15 characters).  
+**Avatar**: The user's profile picture (image upload).  
+**Obstruct List**: A many-to-many relationship to other users, allowing users to block others.  
+**Followers**: A many-to-many relationship to other users, representing users who follow this user.  
+**Following**: A many-to-many relationship to other users, representing users that this user is following.  
+**Created At**: The timestamp when the user profile was created.  
+**Updated At**: The timestamp when the user profile was last updated.  
+**Is Active**: A boolean field indicating if the user account is active (default: True).  
 
 ##### User Model Functions
 The CustomUser model includes the following methods:
