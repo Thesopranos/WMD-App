@@ -47,13 +47,13 @@ The CustomUser model includes the following methods:
 **get_followings_count(self) -> int**: Returns the number of users this user is following.  
 **get_obstruct_count(self) -> int**: Returns the number of users in the obstruct list.  
   
-######Reaction Methods:  
+###### Reaction Methods:  
 **follow(self, user)**: Allows the user to follow another user if they are not already following and not obstructing them.  
 **unfollow(self, user)**: Allows the user to unfollow another user.  
 **obstruct(self, user)**: Allows the user to obstruct another user. If the user is following or being followed by the obstructed user, the respective follow relationship will be removed.  
 **unobstruct(self, user)**: Allows the user to remove a user from the obstruct list.  
 
-######Check Methods:  
+###### Check Methods:  
 **is_following(self, user) -> bool**: Checks if the user is following another user.  
 **is_followed_by(self, user) -> bool**: Checks if the user is followed by another user.  
 **is_obstructing(self, user) -> bool**: Checks if the user is obstructing another user.  
