@@ -2,7 +2,41 @@ from django.test import TestCase
 from .models import CustomUser
 
 class CustomUserTestCase(TestCase):
+	"""
+		Custom user model test case.
 
+		Fields:
+			user1, user2, user3, user4, user5, user6, user7
+
+		Methods:
+
+			- setUp
+
+			- follow_all_users
+
+			- follow_from_all_users
+
+			- test_user_count
+
+			- test_followings_count
+
+			- test_followers_count
+
+			- test_obstructing_count
+
+			- test_follow
+
+			- test_unfollow
+
+			- test_following_list
+
+			- test_followers_list
+
+			- test_obstruct
+
+			- test_unobstruct
+
+	"""
 	# !! == Setup ==
 	def setUp(self):
 		self.user1 = CustomUser.objects.create_user(username='ali', email='ali@example.com', password='12345')
