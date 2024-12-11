@@ -70,13 +70,13 @@ class CustomUser(AbstractUser):
 
     """
 
-    nickname = models.CharField(max_length=30, blank=True, unique=True)
+    nickname = models.CharField(max_length=30, blank=True, unique=True  )
     name = models.CharField(max_length=30, blank=True)
     surname = models.CharField(max_length=30, blank=True)
     bio = models.TextField(max_length=500, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True )
     location = models.CharField(max_length=30, blank=True)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True   )
     phone = models.CharField(max_length=15, blank=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True)
     obstruct_list = models.ManyToManyField('self', related_name='obstructed_by', symmetrical=False, blank=True)

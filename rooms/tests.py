@@ -98,7 +98,7 @@ class RoomTestCase(TestCase):
 
 	# ? == Room participants count ==
 	def test_participants_count(self):
-		self.assertEqual(self.room1.get_participants_count(), )
+		self.assertEqual(self.room1.get_participants_count(), 4)
 		self.assertEqual(self.room2.get_participants_count(), 0)
 
 	# ? == Room managers count ==
