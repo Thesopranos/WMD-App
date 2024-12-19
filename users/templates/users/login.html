@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}WMD - App{% endblock %}</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}"></link>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <h2>{% block login_title %}Giriş Yap{% endblock %}</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <input type="text" id="login-username" required placeholder=" ">
+                <label for="login-username">{% block login_username %}Kullanıcı Adı{% endblock %}</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" required placeholder=" ">
+                <label for="login-password">{% block login-password %}Şifre{% endblock %}</label>
+            </div>
+            <div class="error-message" id="login-error-message"></div>
+            <button type="submit" class="btn">{% block login_button %}Giriş Yap{% endblock %}</button>
+        </form>
+        <div class="switch-link">{% block login_message %}
+            Hesabınız yok mu?
+            <a onclick="showRegisterForm()" id="klabel" class="klink" target="_blank"> Kayıt olun.</a>
+        {% endblock %}
+        </div>
+    </div>
+
+    <script src="{% static 'users/js/login.js' %}"></script>
+
+</body>
+</html>

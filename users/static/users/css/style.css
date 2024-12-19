@@ -1,0 +1,254 @@
+:root{
+        /* font */
+        --font-family: Arial, sans-serif;
+        --font-size: 15px;
+
+        /* color */
+        --color-white: #fff;
+        --color-black: #000000;
+        --color-blue: #4ebefa;
+        --color-red: #b81b1b;
+        --color-opac-black: #ccc;
+        --color-soft-red: #ff0000;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-red);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    background-color: var(--color-black);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--color-black);
+    width: 300px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: var(--color-white);
+}
+
+.input-group {
+    margin-bottom: 15px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-40%);
+    font-size: var(--font-size);
+    color: var(--color-opac-black);
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--color-white);
+    border-radius: 4px;
+    font-size: var(--font-size);
+    box-sizing: border-box;
+    color: var(--color-black);
+}
+
+#dob{
+    border: none;
+}
+
+/* Doğum Tarihi Alanı*/
+.input-group input[type="date"] {
+    font-family: var(--font-family);
+    background-color: var(--color-white);
+    color: var(--color-opac-black);
+    font-size: var(--font-size);
+    padding: 12px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--color-white);
+    cursor: pointer;
+    transition: var(--color-red) 0.3s ease;
+    box-sizing: border-box;
+}
+
+.input-group input {
+    border-color: var(--color-opac-black);
+    outline: none;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: 5px;
+    font-size: 10px;
+    color: #878787;
+    background-color: var(--color-white);
+    border-radius: 4px;
+    padding: 3px;
+    font-family: var(--font-family);
+    opacity: 1;
+}
+
+/* Ad ve Soyad alanını */
+.name-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-group .input-group {
+    width: 48%;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-red);
+    border: none;
+    border-radius: 4px;
+    color: var(--color-white);
+    font-size: var(--font-size);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--color-red);
+}
+
+.error-message {
+    color: var(--color-red);
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+/* Checkbox */
+.checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--color-red);
+    margin-bottom: 14px;
+}
+
+.checkbox input[type="checkbox"] {
+    width: 14px;
+    height: 12px;
+    margin-right: 6px;
+    accent-color: var(--color-red);
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.checkbox label {
+    font-size: 12px;
+    color: var(--color-red);
+    cursor: pointer;
+}
+
+/* KVKK */
+
+.kvkk {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--color-red);
+    margin-bottom: 14px;
+}
+
+.kvkk input[type="kvkk"] {
+    width: 14px;
+    height: 12px;
+    margin-right: 6px;
+    accent-color: var(--color-red);
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.kvkk label {
+    font-size: 12px;
+    color: var(--color-red);
+    cursor: pointer;
+}
+
+.kvkk-link{
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--color-red);
+    cursor: pointer;
+}
+
+.kvkk-link:hover{
+    color: var(--color-soft-red);
+    transition: 0.3s;
+}
+
+
+/* link */
+.klink {
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--color-red);
+    cursor: pointer;
+    transition: color 0.3s;
+    text-decoration: underline;
+
+}
+
+.klink:hover {
+    color: var(--color-soft-red);
+}
+
+/* Switch Link */
+.switch-link {
+    margin-top: 10px;
+    color: var(--color-red);
+    margin-bottom: 5px;
+}
+
+/* Şifre uyarı mesajı */
+#password-error {
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    color: var(--color-red);
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 80%;
+        max-width: 300px;
+        min-width: 280px;
+    }
+
+    .checkbox, .kvkk {
+        font-size: 12px;
+    }
+
+    .checkbox input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+    }
+
+    .kvkk input[type="kvkk"] {
+        width: 16px;
+        height: 16px;
+    }
+
+}

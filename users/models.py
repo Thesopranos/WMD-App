@@ -82,6 +82,7 @@ class CustomUser(AbstractUser):
     obstruct_list = models.ManyToManyField('self', related_name='obstructed_by', symmetrical=False, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
+    is_notification_enabled = models.BooleanField(default=True, blank=True)
     is_active = models.BooleanField(default=True, blank=True)
 
     followers = models.ManyToManyField(

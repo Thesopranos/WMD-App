@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}WMD - App{% endblock %}</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}"></link>
+</head>
+<body>
+
+    <div class="container" id="register-container">
+        <h2>{% block register_title %}Kayıt Ol{% endblock %}</h2>
+        <form id="register-form">
+            <!-- Ad ve Soyad-->
+            <div class="name-group">
+                <div class="input-group">
+                    <input type="text" id="register-firstname" required placeholder=" ">
+                    <label for="register-firstname">{% block register_name %}Ad{% endblock %}</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="register-lastname" required placeholder=" ">
+                    <label for="register-lastname">{% block register_surname %}Soyad{% endblock %}</label>
+                </div>
+            </div>
+
+            <!-- Kullanıcı Adı -->
+            <div class="input-group">
+                <input type="text" id="register-username" required placeholder=" ">
+                <label for="register-username">{% block register_username %}Kullanıcı Adı{% endblock %}</label>
+            </div>
+
+            <!-- E-posta -->
+            <div class="input-group">
+                <input type="email" id="register-email" required placeholder=" ">
+                <label for="register-email">{% block register_email %}E-posta{% endblock %}</label>
+            </div>
+
+            <!-- Şifre -->
+            <div class="input-group">
+                <input type="password" id="register-password" required placeholder=" ">
+                <label for="register-password">{% block register_password %}Şifre{% endblock %}</label>
+            </div>
+
+            <!-- Doğum Tarihi -->
+            <div class="input-group">
+                <input type="date" id="register-dob" required placeholder=" ">
+                <label for="register-dob" id="dob">{% block register_dob %}Doğum Tarihi{% endblock %}</label>
+            </div>
+
+            <!-- bildirimler -->
+            <div class="checkbox">
+                <input type="checkbox" id="register-notifications">
+                <label for="register-notifications">{% block register_notifications %}Bildirimleri almak istiyorum.{% endblock %}</label>
+            </div>
+
+            <!-- kvkk -->
+            <div class="kvkk">
+                <label for="register-kvkk" id="kvkk-label">{% block register_kvkk %}Kaydolarak,
+                    <a href="/kosullar" class="kvkk-link" target="_blank">Koşullarımızı</a>,
+                    <a href="/gizlilik-ilkesi" class="kvkk-link" target="_blank">Gizlilik İlkemizi</a> ve
+                    <a href="/cerezler-ilkesi" class="kvkk-link" target="_blank">Çerezler İlkemizi</a> kabul etmiş olursun.
+                {% endblock %}</label>
+            </div>
+            <button type="submit" class="btn">{% block register-button %}Kayıt Ol{% endblock %}</button>
+            <div class="error-message" id="register-error-message"></div>
+        </form>
+        <div class="switch-link">{% block register_message %}
+            Zaten üyeliğiniz var mı?
+            <a onclick="showLoginForm()" id="klabel" class="klink" target="_blank"> Giriş yapın.</a>
+        {% endblock %}
+        </div>
+    </div>
+
+    <!-- Doğrulama Kodu Giriş Ekranı -->
+    <div class="container" id="verification-container" style="display:none;">
+        <h2>{% block verification_title %}Hesap Doğrulaması{% endblock %}</h2>
+        <div class="switch-link">{% block verification_message %}
+            E-posta adresinize gönderdiğimiz 6 haneli doğrulama kodunu girin.{% endblock %}
+        </div>
+        <form id="verification-form">
+            <div class="input-group">
+                <input type="text" id="verification-code" required maxlength="6" placeholder=" ">
+                <label for="verification-code">{% block verification_code %}Doğrulama Kodu{% endblock %}</label>
+            </div>
+            <button type="submit" class="btn">{% block verification_button %}Doğrula{% endblock %}</button>
+            <div class="error-message" id="verification-error-message"></div>
+        </form>
+    </div>
+    </div>
+
+    <script src="{% static 'users/js/register.js' %}"></script>
+
+</body>
+</html>
