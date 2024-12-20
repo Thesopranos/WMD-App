@@ -28,7 +28,12 @@ def register(request):
 
         for field in user_required_fields:
             if not data.get(field):
-                return JsonResponse({'message': f'{field} alanı boş olamaz'}, status=400)
+                return JsonResponse({'message': f'{field} alanı boş olamaz', 'success':0}, status=400)
+
+        if CustomUser.objects.filter(username=username).exists():
+            return JsonResponse({'message': 'Kullanıcı adı zaten alınmış', 'success':0}, status=400)
+        elif CustomUser.objects.filter(email=email).exists():
+            return JsonResponse({'message': 'E-posta zaten alınmış', 'success':0}, status=400)
 
         verification_code = ''.join(random.choices(string.digits, k=6))
 
@@ -49,7 +54,7 @@ def register(request):
             'notifications': notifications,
             'code': verification_code
         }, timeout=30000)
-        return JsonResponse({'message': 'Kod gönderildi'}, status=200)
+        return JsonResponse({'message': 'Kod gönderildi', 'success':1}, status=200)
 
 def verify_code(request):
     if request.method == 'POST':
@@ -62,14 +67,14 @@ def verify_code(request):
         code = data.get('code')
 
         if not email or not code:
-            return JsonResponse({'message': 'Email ve kod alanları boş olamaz'}, status=400)
+            return JsonResponse({'message': 'Email ve kod alanları boş olamaz', 'success':0}, status=400)
 
         cached_data = cache.get(f'verify_{email}')
         if not cached_data:
-            return JsonResponse({'message': 'Kod süresi dolmuş veya geçersiz'}, status=400)
+            return JsonResponse({'message': 'Kod süresi dolmuş veya geçersiz', 'success':0}, status=400)
 
         if cached_data['code'] != code:
-            return JsonResponse({'message': 'Geçersiz kod'}, status=400)
+            return JsonResponse({'message': 'Geçersiz kod', 'success':0}, status=400)
         try:
             user = CustomUser.objects.create_user(
                 username=cached_data['username'],
@@ -84,9 +89,9 @@ def verify_code(request):
                 )
             user.save()
 
-            return JsonResponse({'message': 'Kullanıcı başarıyla oluşturuldu'}, status=201)
+            return JsonResponse({'message': 'Kullanıcı başarıyla oluşturuldu', 'success':1}, status=201)
         except Exception as e:
-                return JsonResponse({'message': str(e)}, status=400)
+                return JsonResponse({'message': str(e), 'success':0}, status=400)
         finally:
                 cache.delete(f'verify_{email}')
 

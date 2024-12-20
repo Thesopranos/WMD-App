@@ -130,9 +130,9 @@ h2 {
     background-color: var(--color-red);
 }
 
-.error-message {
-    color: var(--color-red);
-    font-size: 12px;
+.back-message {
+    color: var(--color-soft-red);
+    font-size: 15px;
     margin-top: 10px;
     margin-bottom: 12px;
 }

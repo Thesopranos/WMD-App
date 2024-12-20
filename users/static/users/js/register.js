@@ -1,3 +1,18 @@
+const firstname = document.getElementById('register-firstname');
+const lastname = document.getElementById('register-lastname');
+const username = document.getElementById('register-username');
+const email = document.getElementById('register-email');
+const password = document.getElementById('register-password');
+const dob = document.getElementById('register-dob');
+const notifications = document.getElementById('register-notifications');
+firstname.value = 'Mehmet';
+lastname.value = 'Yılmaz';
+username.value = 'mertcaki';
+email.value = 'mertllcaki@gmail.com';
+password.value = 'Mert1234!';
+dob.value = '2000-01-01';
+notifications.checked = true;
+
 document.getElementById('register-form').addEventListener('submit', function(event) {
 	event.preventDefault();
 
@@ -27,8 +42,18 @@ document.getElementById('register-form').addEventListener('submit', function(eve
 					dob,
 					notifications
 				})
-			});
-			showVerificationForm();  // Doğrulama ekranını göster
+			}) .then(response => {
+				return response.json(); // JSON verisini parse et
+			}) .then(data => {
+				console.log(data);
+				if (data.success) {
+					showVerificationForm();
+				} else {
+				document.getElementById('register-message').innerText = data.message;
+				}
+			}
+			);
+
 		} else {
 			// Şifre kurallara uymuyorsa hata mesajını göster
 			alert('Şifreniz en az bir büyük harf, bir küçük harf, bir rakam ve bir özel karakter içermelidir.');
@@ -66,10 +91,15 @@ document.getElementById('verification-container').addEventListener('submit', fun
 			code: enteredCode
 		})
 	}).then(response => {
-		if (response.ok) {
-			window.location.href = '/login/';
+		return response.json();
+	} ).then(data => {
+		if (data.success) {
+			document.getElementById('verification-message').innerText = data.message;
+			setTimeout(() => {
+				window.location.href = '/login/';
+			}, 1000);
 		} else {
-			alert('Doğrulama kodu hatalı.');
+			document.getElementById('verification-message').innerText = data.message;
 		}
 	});
 

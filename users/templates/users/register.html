@@ -13,15 +13,9 @@
 
     <div class="container" id="register-container">
         <h2>{% block register_title %}Kayıt Ol{% endblock %}</h2>
+        <div class="back-message" id="register-message"></div>
         <form id="register-form" method="post">
             {% csrf_token %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
             <!-- Ad ve Soyad-->
             <div class="name-group">
                 <div class="input-group">
@@ -73,7 +67,6 @@
                 {% endblock %}</label>
             </div>
             <button type="submit" class="btn">{% block register-button %}Kayıt Ol{% endblock %}</button>
-            <div class="error-message" id="register-error-message"></div>
         </form>
         <div class="switch-link">{% block register_message %}
             Zaten üyeliğiniz var mı?
@@ -85,6 +78,7 @@
     <!-- Doğrulama Kodu Giriş Ekranı -->
     <div class="container" id="verification-container" style="display:none;">
         <h2>{% block verification_title %}Hesap Doğrulaması{% endblock %}</h2>
+        <div class="back-message" id="verification-message"></div>
         <div class="switch-link">{% block verification_message %}
             E-posta adresinize gönderdiğimiz 6 haneli doğrulama kodunu girin.{% endblock %}
         </div>
@@ -94,7 +88,6 @@
                 <label for="verification-code">{% block verification_code %}Doğrulama Kodu{% endblock %}</label>
             </div>
             <button type="submit" class="btn">{% block verification_button %}Doğrula{% endblock %}</button>
-            <div class="error-message" id="verification-error-message"></div>
         </form>
     </div>
     </div>
