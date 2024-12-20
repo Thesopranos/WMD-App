@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
         Custom user model.
 
         Fields:
-            nickname: str, max_length=30, unique, required
+            username: str, max_length=30, unique, required
 
             name: str, max_length=30, required
 
@@ -74,13 +74,13 @@ class CustomUser(AbstractUser):
 
     """
 
-    nickname = models.CharField(max_length=30, blank=True, unique=True  )
+    username = models.CharField(max_length=30, blank=True, unique=True)
     name = models.CharField(max_length=30, blank=True)
     surname = models.CharField(max_length=30, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True )
     location = models.CharField(max_length=30, blank=True)
-    email = models.EmailField(unique=True   )
+    email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15, blank=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True)
     obstruct_list = models.ManyToManyField('self', related_name='obstructed_by', symmetrical=False, blank=True)
@@ -184,37 +184,3 @@ class CustomUser(AbstractUser):
     # ? == Check if user is obstructing ==
     def is_obstructing(self, user) -> bool:
         return self.obstruct_list.filter(id=user.id).exists()
-
-class Verification(models.Model):
-    """
-        Verification model.
-
-        Fields:
-            user: CustomUser, required
-
-            code: str, max_length=6, required
-
-            created_at: datetime, auto_now_add, required
-
-            updated_at: datetime, auto_now, not required
-
-        Methods:
-            __str__: str
-
-    """
-
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    code = models.CharField(max_length=6)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True, blank=True)
-
-    def __str__(self):
-        return f'{self.user.username} - {self.code}'
-
-    def is_expired(self):
-        return self.created_at + timedelta(minutes=5) < timezone.now()
-
-    def generate_code(self):
-            self.code = ''.join(random.choices(string.digits, k=6))
-            self.expires_at = timezone.now() + timedelta(minutes=10)  # Kodun geçerlilik süresi: 10 dakika
-            self.save()
