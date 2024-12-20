@@ -1,0 +1,6 @@
+asgiref==3.8.1
+channels==4.2.0
+Django==5.1.4
+pillow==11.0.0
+sqlparse==0.5.2
+typing_extensions==4.12.2

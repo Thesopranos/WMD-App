@@ -1,6 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+from datetime import timedelta
+import random
+import string
 
 class CustomUser(AbstractUser):
     """
@@ -180,3 +184,37 @@ class CustomUser(AbstractUser):
     # ? == Check if user is obstructing ==
     def is_obstructing(self, user) -> bool:
         return self.obstruct_list.filter(id=user.id).exists()
+
+class Verification(models.Model):
+    """
+        Verification model.
+
+        Fields:
+            user: CustomUser, required
+
+            code: str, max_length=6, required
+
+            created_at: datetime, auto_now_add, required
+
+            updated_at: datetime, auto_now, not required
+
+        Methods:
+            __str__: str
+
+    """
+
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.code}'
+
+    def is_expired(self):
+        return self.created_at + timedelta(minutes=5) < timezone.now()
+
+    def generate_code(self):
+            self.code = ''.join(random.choices(string.digits, k=6))
+            self.expires_at = timezone.now() + timedelta(minutes=10)  # Kodun geçerlilik süresi: 10 dakika
+            self.save()
